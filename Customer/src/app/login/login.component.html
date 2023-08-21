@@ -1,0 +1,18 @@
+<br/>
+<div class="login-container" style="width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+    <h4 style="text-align: center; margin-bottom: 20px;">Customer Login</h4>
+    <br/>
+    <form #loginform="ngForm" (ngSubmit)="onLogin()">
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label for="userName" style="display: block; font-weight: bold; margin-bottom: 5px;">UserName</label>
+        <input type="text" id="userName" name="userName" [(ngModel)]="userName" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      </div>
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label for="password" style="display: block; font-weight: bold; margin-bottom: 5px;">Password</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      </div>
+      <button type="submit" style="display: block; width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;" >Login</button>
+      <br/>
+      <button style="display: block; width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;" (click)="onSignup()">SignUp</button><br/><br/>
+    </form>
+  </div>
