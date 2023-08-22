@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -10,6 +10,14 @@ import { RouterModule } from '@angular/router';
 import { DetailsComponent } from './details/details.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
+import { MessageService } from 'primeng/api';
+import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from 'primeng/calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -18,16 +26,22 @@ import { FooterComponent } from './footer/footer.component';
     RegistrationComponent,
     DetailsComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
     FormsModule,
+    ToastModule,
+    RouterModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
-    RouterModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    ButtonModule,
+    InputTextModule,
+    CalendarModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [MessageService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,46 @@
+/* styles.css */
+
+.login-container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.login-container h4 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input {
+  width: 22.5rem;
+}
+p-button {
+  display: flex;
+  justify-content: center;
+}
+::ng-deep .p-ripple {
+  width: 15rem;
+  height: 2.5rem;
+}
+.showPasswordIcon{
+    position: absolute;
+    right: 15px;
+}
+::ng-deep .p-calendar{
+  width: 22.5rem;
+}
+
+.label-sapacing{
+  margin-top: 1rem;
+}
+
+::ng-deep .p-input-icon-left.p-float-label > label {
+    left: 1rem;
+}
+::ng-deep .p-float-label input:focus ~ label{
+  margin-left:  0px;
+  font-size: 1rem;
+}

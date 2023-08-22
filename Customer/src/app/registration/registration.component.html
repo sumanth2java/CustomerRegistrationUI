@@ -1,55 +1,143 @@
-<br/>
-<div class="login-container" style="width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
-    <h4 style="text-align: center; margin-bottom: 20px;">Customer Registration</h4>
-    <form #loginform="ngForm" (ngSubmit)="onSignup()">
-
-        <div class="form-group" style="margin-bottom: 15px;">
-            <label for="firstname" style="display: block; font-weight: bold; margin-bottom: 5px;">First Name</label>
-            <input type="text" id="firstname" name="firstname" [(ngModel)]="firstName" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-          </div>
-
-          <div class="form-group" style="margin-bottom: 15px;">
-            <label for="lastname" style="display: block; font-weight: bold; margin-bottom: 5px;">Last Name</label>
-            <input type="text" id="lastname" name="lastname" [(ngModel)]="lastName" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-          </div>
-
-          <div class="form-group" style="margin-bottom: 15px;">
-            <label for="dateofbirth" style="display: block; font-weight: bold; margin-bottom: 5px;">Date of Birth</label>
-            <input type="text" id="dateofbirth" name="dateofbirth" [(ngModel)]="dateOfBirth" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-          </div>
-
-          <div class="form-group" style="margin-bottom: 15px;">
-            <label for="streetaddress" style="display: block; font-weight: bold; margin-bottom: 5px;">Street Address</label>
-            <input type="text" id="streetaddress" name="streetaddress" [(ngModel)]="streetAddress" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-          </div>
-
-          <div class="form-group" style="margin-bottom: 15px;">
-            <label for="city" style="display: block; font-weight: bold; margin-bottom: 5px;">City</label>
-            <input type="text" id="city" name="city" [(ngModel)]="city" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-          </div>
-
-          <div class="form-group" style="margin-bottom: 15px;">
-            <label for="state" style="display: block; font-weight: bold; margin-bottom: 5px;">State</label>
-            <input type="text" id="state" name="state" [(ngModel)]="state" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-          </div>
-
-          <div class="form-group" style="margin-bottom: 15px;">
-            <label for="zipcode" style="display: block; font-weight: bold; margin-bottom: 5px;">Zip Code</label>
-            <input type="text" id="zipcode" name="zipcode" [(ngModel)]="zipcode" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-          </div>
-
-      <div class="form-group" style="margin-bottom: 15px;">
-        <label for="userName" style="display: block; font-weight: bold; margin-bottom: 5px;">Username</label>
-        <input type="text" id="userName" name="userName" [(ngModel)]="userName" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+<br />
+<div class="login-container">
+  <h4>Customer Registration</h4>
+  <form [formGroup]="signUpForm" #formDirective="ngForm">
+    <div class="p-field p-col-12 p-md-6 mb-3">
+      <span class="p-float-label label-sapacing p-input-icon-left">
+        <!-- <i class="pi pi-user" [ngClass]="submitted && f['name'].errors?.['required'] ? 'dirtyIcon' : ' '"></i> -->
+        <input [ngClass]="submitted && f['firstName'].errors?.['required'] ? 'ng-dirty ng-invalid' : ' '" type="text"
+          formControlName="firstName" pInputText />
+        <label for="inputtext-left">FirstName</label>
+      </span>
+      <div *ngIf="submitted && f['firstName'].errors" class="p-error" style="margin-top: 2px">
+        <div class="test" *ngIf="f['firstName'].errors['required']">
+          FirstName is required
+        </div>
       </div>
-      <div class="form-group" style="margin-bottom: 15px;">
-        <label for="password" style="display: block; font-weight: bold; margin-bottom: 5px;">Password</label>
-        <input type="password" id="password" name="password" [(ngModel)]="password" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+    </div>
+    <br>
+    <div class="p-field p-col-12 p-md-6 mb-3">
+      <span class="p-float-label label-sapacing p-input-icon-left">
+        <!-- <i class="pi pi-user" [ngClass]="submitted && f['name'].errors?.['required'] ? 'dirtyIcon' : ' '"></i> -->
+        <input [ngClass]="submitted && f['lastName'].errors?.['required'] ? 'ng-dirty ng-invalid' : ' '" type="text"
+          formControlName="lastName" pInputText />
+        <label for="inputtext-left">LastName</label>
+      </span>
+      <div *ngIf="submitted && f['lastName'].errors" class="p-error" style="margin-top: 2px">
+        <div class="test" *ngIf="f['lastName'].errors['required']">
+          LastName is required
+        </div>
       </div>
-      <br/>
-      <button type="submit" style="display: block; width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">SignUp</button>
-    </form>
-    <br/>
-  </div>
-  <br/>
-  <br/>
+    </div>
+    <br>
+    <div class="p-field p-col-12 p-md-6 mb-3">
+      <span class="p-float-label label-sapacing p-input-icon-left">
+        <!-- <i class="pi pi-user" [ngClass]="submitted && f['name'].errors?.['required'] ? 'dirtyIcon' : ' '"></i> -->
+          <p-calendar  dateFormat="mm/dd/yy" [ngClass]="submitted && f['dateOfBirth'].errors?.['required'] ? 'ng-dirty ng-invalid' : ' '" type="text"
+          formControlName="dateOfBirth"></p-calendar>
+        <label for="inputtext-left">DateOfBirth</label>
+      </span>
+      <div *ngIf="submitted && f['dateOfBirth'].errors" class="p-error" style="margin-top: 2px">
+        <div class="test" *ngIf="f['dateOfBirth'].errors['required']">
+          DateOfBirth is required
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="p-field p-col-12 p-md-6 mb-3">
+      <span class="p-float-label label-sapacing p-input-icon-left">
+        <!-- <i class="pi pi-user" [ngClass]="submitted && f['name'].errors?.['required'] ? 'dirtyIcon' : ' '"></i> -->
+        <input [ngClass]="submitted && f['streetAddress'].errors?.['required'] ? 'ng-dirty ng-invalid' : ' '" type="text"
+          formControlName="streetAddress" pInputText />
+        <label for="inputtext-left">StreetAddress</label>
+      </span>
+      <div *ngIf="submitted && f['streetAddress'].errors" class="p-error" style="margin-top: 2px">
+        <div class="test" *ngIf="f['streetAddress'].errors['required']">
+          StreetAddress is required
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="p-field p-col-12 p-md-6 mb-3">
+      <span class="p-float-label label-sapacing p-input-icon-left">
+        <!-- <i class="pi pi-user" [ngClass]="submitted && f['name'].errors?.['required'] ? 'dirtyIcon' : ' '"></i> -->
+        <input [ngClass]="submitted && f['city'].errors?.['required'] ? 'ng-dirty ng-invalid' : ' '" type="text"
+          formControlName="city" pInputText />
+        <label for="inputtext-left">City</label>
+      </span>
+      <div *ngIf="submitted && f['city'].errors" class="p-error" style="margin-top: 2px">
+        <div class="test" *ngIf="f['city'].errors['required']">
+          City is required
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="p-field p-col-12 p-md-6 mb-3">
+      <span class="p-float-label label-sapacing p-input-icon-left">
+        <!-- <i class="pi pi-user" [ngClass]="submitted && f['name'].errors?.['required'] ? 'dirtyIcon' : ' '"></i> -->
+        <input [ngClass]="submitted && f['state'].errors?.['required'] ? 'ng-dirty ng-invalid' : ' '" type="text"
+          formControlName="state" pInputText />
+        <label for="inputtext-left">State</label>
+      </span>
+      <div *ngIf="submitted && f['state'].errors" class="p-error" style="margin-top: 2px">
+        <div class="test" *ngIf="f['state'].errors['required']">
+          State is required
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="p-field p-col-12 p-md-6 mb-3">
+      <span class="p-float-label label-sapacing p-input-icon-left">
+        <!-- <i class="pi pi-user" [ngClass]="submitted && f['name'].errors?.['required'] ? 'dirtyIcon' : ' '"></i> -->
+        <input [ngClass]="submitted && f['zipcode'].errors?.['required'] ? 'ng-dirty ng-invalid' : ' '" type="text"
+          formControlName="zipcode" pInputText />
+        <label for="inputtext-left">Zipcode</label>
+      </span>
+      <div *ngIf="submitted && f['zipcode'].errors" class="p-error" style="margin-top: 2px">
+        <div class="test" *ngIf="f['zipcode'].errors['required']">
+          Zipcode is required
+        </div>
+      </div>
+    </div>
+    <br>
+      <div class="p-field p-col-12 p-md-6 mb-3">
+        <span class="p-float-label label-sapacing p-input-icon-left">
+          <input [ngClass]="submitted && f['userName'].errors?.['required'] ? 'ng-dirty ng-invalid' : ' '" type="text"
+            formControlName="userName" pInputText />
+          <label for="inputtext-left">userName</label>
+        </span>
+        <div *ngIf="submitted && f['userName'].errors" class="p-error" style="margin-top: 2px">
+          <div class="test" *ngIf="f['userName'].errors['required']">
+            UserName is required
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="p-field p-col-12 p-md">
+        <span class="p-float-label label-sapacing p-input-icon-left">
+          <input [type]="fieldTextType ? 'text' : 'password'" pInputText formControlName="password"
+            [ngClass]="submitted && f['password'].errors?.['required'] ? 'ng-dirty ng-invalid' : ' '" />
+          <i class="pi showPasswordIcon" >
+          </i>
+          <i class="pi showPasswordIcon" [ngClass]="{
+                          'pi-eye-slash': !fieldTextType,
+                          'pi-eye': fieldTextType
+                        }" (click)="fieldTextType = !fieldTextType">
+          </i>
+          <label for="inputtext-left">Password</label>
+        </span>
+        <div *ngIf="submitted && f['password'].errors" class="p-error mr-6" style="margin-top: 2px">
+          <div *ngIf="f['password'].errors['required']">
+            Password is required
+          </div>
+          <div class="ml-6" *ngIf="f['password'].errors['minlength']">
+            Password is minimum of 8 characters
+          </div>
+        </div>
+      </div>
+  </form>
+  <br>
+  <p-button type="submit" label="Signup" [loading]="loading" iconPos="right" (click)="signUp()"></p-button>
+</div>
+<br />
+<br />

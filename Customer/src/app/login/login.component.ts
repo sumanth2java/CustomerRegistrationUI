@@ -1,39 +1,65 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { RegistrationService } from '../registration.service';
-import { Customer } from '../customer';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
-import { map, tap } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  userName: string = '';
-  password: string = '';
+  fieldTextType = false;
+  signInForm!: FormGroup;
+  submitted!: boolean;
+  responseData: any | undefined;
+  loading!: boolean;
 
-  ngOnInit(){
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private mesService: MessageService,
+    private regService: RegistrationService
+  ) {}
 
+  ngOnInit(): void {
+    this.signInForm = this.fb.group({
+      userName: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+    });
   }
 
-  onLogin() {
-    console.error('test1111')
-    this.service.getCustomer().pipe(
-      tap((x) => {
-       const details = x.filter( (y: { userName: string; })=> y.userName ===this.userName);
-        this.service.customerDetails.next(details[0])
-        this.router.navigate(['/details'])
-      })
-    ).subscribe()
-
+  get f(): { [key: string]: AbstractControl } {
+    return this.signInForm.controls;
   }
 
-  constructor(private router : Router , private service : RegistrationService){}
-
-  onSignup() {
-    this.router.navigate(['/registration']);
+  signIn() {
+    this.submitted = true;
+    if (this.signInForm.invalid) {
+      console.log(this.signInForm.value);
+      
+      return;
+    }
+    this.loading = true;
+    this.regService.signIn(this.signInForm.value).subscribe(
+      (data: any) => {
+        console.log(data);
+        
+        localStorage.setItem('res', JSON.stringify(data))
+        this.loading = false;
+          this.router.navigate(['/details']);
+      },
+      (err) => {
+        console.log(err);
+        
+        this.loading = false;
+      }
+    );
   }
-
 }

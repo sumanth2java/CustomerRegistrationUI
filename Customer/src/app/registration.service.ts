@@ -12,12 +12,11 @@ export class RegistrationService {
 
   constructor(private _http : HttpClient) { }
 
-  public getCustomer():Observable<any>{
-   return this._http.get("http://localhost:8085/registration/getCustomer")
-  }
 
-
-  public saveCustomer(customer: Customer):Observable<any>{
+  public signIn(customer: any){
+    return this._http.post("http://localhost:8085/registration/login", customer);
+   }
+  public signUp(customer: any){
     return this._http.post("http://localhost:8085/registration/addCustomer", customer);
    }
 
