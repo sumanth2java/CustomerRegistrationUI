@@ -33,7 +33,7 @@
     <div class="p-field p-col-12 p-md-6 mb-3">
       <span class="p-float-label label-sapacing p-input-icon-left">
         <!-- <i class="pi pi-user" [ngClass]="submitted && f['name'].errors?.['required'] ? 'dirtyIcon' : ' '"></i> -->
-          <p-calendar  dateFormat="mm/dd/yy" [ngClass]="submitted && f['dateOfBirth'].errors?.['required'] ? 'ng-dirty ng-invalid' : ' '" type="text"
+          <p-calendar  dateFormat="mm-dd-yy" [ngClass]="submitted && f['dateOfBirth'].errors?.['required'] ? 'ng-dirty ng-invalid' : ' '" type="text"
           formControlName="dateOfBirth"></p-calendar>
         <label for="inputtext-left">DateOfBirth</label>
       </span>

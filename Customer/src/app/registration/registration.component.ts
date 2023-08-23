@@ -26,7 +26,7 @@ export class RegistrationComponent {
     this.signUpForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      dateOfBirth: [this.date, Validators.required],
+      dateOfBirth: ['', Validators.required],
       streetAddress: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
